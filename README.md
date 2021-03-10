@@ -1,5 +1,5 @@
 # Teardown-Mod-Menu
-Simple modular admin menu for teardown based on <a href=https://github.com/Mjtlittle/teardown-tool-menu>teardown-tool-menu by Mjtlittle</a>.
+Simple modular mod menu for teardown based on <a href=https://github.com/Mjtlittle/teardown-tool-menu>teardown-tool-menu by Mjtlittle</a>.
 
 ## Features
 - Equip any base game or modded tool
