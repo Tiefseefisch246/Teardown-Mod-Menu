@@ -13,4 +13,4 @@ Simple modular admin menu for teardown based on <a href=https://github.com/Mjtli
 - Unlimited Mission Time
 
 ## Usage
-Click the <kbd>q</kbd> key to toggle the tool menu in the upper-left corner.
+Click the <kbd>q</kbd> key to toggle the menu in the upper-left corner.
