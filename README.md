@@ -1,7 +1,7 @@
 # Teardown-Mod-Menu
 Simple modular mod menu for teardown based on <a href=https://github.com/Mjtlittle/teardown-tool-menu>teardown-tool-menu by Mjtlittle</a>.
 
-This mod menu does not add any weapons.
+This mod menu does not add any tools.
 
 ## Features
 - Equip any base game or installed modded tool
