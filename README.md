@@ -14,4 +14,5 @@ Simple modular mod menu for teardown based on <a href=https://github.com/Mjtlitt
 - Unlimited Mission Time
 
 ## Usage
-Click the <kbd>q</kbd> key to toggle the menu in the upper-left corner.
+Click the <kbd>q</kbd> key to toggle the menu in the upper-left corner. You can change the keybind in the options of the mod.
+
