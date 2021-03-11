@@ -34,12 +34,11 @@ function init()
     end
 
     menu_open = false
+    menu_opened_before = false
     all_tools = {}
     menu_instance = {}
 
-    generate_all_tools()
     generate_all_player_mods()
-    load_favorite_tools()
 
     recent_menu_height = 100
     scroll_pos = 0
@@ -74,6 +73,13 @@ function tick(dt)
     -- toggle menu
     if InputPressed(menu_key) then
 
+        -- when the menu is opened for the first time
+        if not menu_opened_before then
+            generate_all_tools()
+            load_favorite_tools()
+            menu_opened_before = true
+        end
+
         -- on menu open
         if not menu_open then
             generate_menu_instance()
@@ -98,7 +104,7 @@ function tick(dt)
             SpawnFire(VecAdd(GetPlayerTransform().pos, Vec(0,0,0)))
             SpawnParticle("fire", VecAdd(GetPlayerTransform().pos, Vec(0,0,0)), Vec(0, 1, 0), 1, 1)
         elseif(mod.name == "Fly" and mod.enabled == true) then
-		    if InputPressed("space") then
+		    if InputDown("space") then
                 JumpBoost()
             end
         elseif(mod.name == "Unlimited Mission Time" and mod.enabled == true) then
@@ -576,7 +582,7 @@ end
 
 function JumpBoost()
 	local pt = GetPlayerTransform()
-	local d = TransformToParentVec(pt, Vec(0, 7.5, -2.5))
+	local d = TransformToParentVec(pt, Vec(0, 5, -0.5))
 	local vel = GetPlayerVelocity()
 	vel[2] = 0
 	vel = VecAdd(vel, d)
