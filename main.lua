@@ -26,7 +26,7 @@ local player_mods = {
     'Unlimited Mission Time'
 }
 
-local speed = 0.5
+local speed = 0.6
 
 function init()
     if not (GetString("savegame.mod.keybind") == "") then
@@ -108,25 +108,43 @@ function tick(dt)
         elseif(mod.name == "Instant Win" and mod.enabled == true) then
             SetString("level.state", "win")
         elseif(mod.name == "Extra Speed" and mod.enabled == true) then
-			local t = GetPlayerTransform()
-			local d = TransformToParentVec(t, Vec(0, 0, 0))
-			local vel = GetPlayerVelocity()
-            if InputDown("w") then
-                d = TransformToParentVec(t, Vec(0, 0, -speed))
-                vel = VecAdd(vel, d)
-                SetPlayerVelocity(vel)
-            elseif InputDown("s") then
-                d = TransformToParentVec(t, Vec(0, 0, speed))
-                vel = VecAdd(vel, d)
-                SetPlayerVelocity(vel)
-            elseif InputDown("a") then
-                d = TransformToParentVec(t, Vec(-speed, 0, 0))
-                vel = VecAdd(vel, d)
-                SetPlayerVelocity(vel)
-            elseif InputDown("d") then
-                d = TransformToParentVec(t, Vec(speed, 0, 0))
-                vel = VecAdd(vel, d)
-                SetPlayerVelocity(vel)
+			if(GetPlayerVehicle() == 0 and InputDown("space") == false) then
+                local pt = GetPlayerTransform()
+                local d = TransformToParentVec(pt, Vec(0, 0, 0))
+                local pvel = GetPlayerVelocity()
+                local wboost = false
+                local sboost = false
+                local aboost = false
+                local dboost = false
+                if InputDown("w") and wboost == false then
+                    d = TransformToParentVec(pt, Vec(0, 0, -speed))
+                    pvel = VecAdd(pvel, d)
+                    SetPlayerVelocity(pvel)
+                    wboost = true
+                elseif InputReleased("w") then
+                    wboost = false
+                elseif InputDown("s") and sboost == false then
+                    d = TransformToParentVec(pt, Vec(0, 0, speed))
+                    pvel = VecAdd(pvel, d)
+                    SetPlayerVelocity(pvel)
+                    sboost = true
+                elseif InputReleased("s") then
+                    sboost = false
+                elseif InputDown("a") and aboost == false then
+                    d = TransformToParentVec(pt, Vec(-speed, 0, 0))
+                    pvel = VecAdd(pvel, d)
+                    SetPlayerVelocity(pvel)
+                    aboost = true
+                elseif InputReleased("a") then
+                    aboost = false
+                elseif InputDown("d") and dboost == false then
+                    d = TransformToParentVec(pt, Vec(speed, 0, 0))
+                    pvel = VecAdd(pvel, d)
+                    SetPlayerVelocity(pvel)
+                    dboost = true
+                elseif InputReleased("d") then
+                    dboost = false
+                end
             end
         end
     end
