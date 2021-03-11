@@ -3,7 +3,7 @@ Simple modular mod menu for teardown based on <a href=https://github.com/Mjtlitt
 
 This mod menu does not add any weapons.
 
-##Features
+## Features
 - Equip any base game or installed modded tool
 - Favorite tools to easily find them at the top of the menu
 - Add or remove tools from your toolbelt (individually or in bulk)
