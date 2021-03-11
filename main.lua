@@ -17,6 +17,7 @@ local basegame_tool_ids = {
 }
 
 local player_mods = {
+    'Extra Speed',
     'Firewalk',
     'Fly',
     'Godmode',
@@ -25,7 +26,13 @@ local player_mods = {
     'Unlimited Mission Time'
 }
 
+local speed = 0.5
+
 function init()
+    if not (GetString("savegame.mod.keybind") == "") then
+        menu_key = GetString("savegame.mod.keybind")
+    end
+
     menu_open = false
     all_tools = {}
     menu_instance = {}
@@ -100,6 +107,27 @@ function tick(dt)
             SetInt("game.tool."..GetString("game.player.tool")..".ammo", 99999)
         elseif(mod.name == "Instant Win" and mod.enabled == true) then
             SetString("level.state", "win")
+        elseif(mod.name == "Extra Speed" and mod.enabled == true) then
+			local t = GetPlayerTransform()
+			local d = TransformToParentVec(t, Vec(0, 0, 0))
+			local vel = GetPlayerVelocity()
+            if InputDown("w") then
+                d = TransformToParentVec(t, Vec(0, 0, -speed))
+                vel = VecAdd(vel, d)
+                SetPlayerVelocity(vel)
+            elseif InputDown("s") then
+                d = TransformToParentVec(t, Vec(0, 0, speed))
+                vel = VecAdd(vel, d)
+                SetPlayerVelocity(vel)
+            elseif InputDown("a") then
+                d = TransformToParentVec(t, Vec(-speed, 0, 0))
+                vel = VecAdd(vel, d)
+                SetPlayerVelocity(vel)
+            elseif InputDown("d") then
+                d = TransformToParentVec(t, Vec(speed, 0, 0))
+                vel = VecAdd(vel, d)
+                SetPlayerVelocity(vel)
+            end
         end
     end
 end
@@ -346,15 +374,15 @@ function draw_menu_button(mod, width, height)
 
         -- state
         UiPush()
-            UiFont("regular.ttf", 16)
+            UiFont("regular.ttf", 20)
             UiAlign("top right")
             UiTranslate(UiWidth() - small_margin, small_margin)
             if(mod.enabled == true) then
                 UiColor(0,1,1)
-                UiText("Active")
+                UiText("On")
             else
                 UiColor(1,0,0)
-                UiText("Inactive")
+                UiText("Off")
             end
         UiPop()
 
