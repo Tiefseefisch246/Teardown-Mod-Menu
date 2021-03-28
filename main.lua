@@ -33,10 +33,10 @@ function init()
         menu_key = GetString("savegame.mod.keybind")
     end
 
-    menu_open = false
-    menu_opened_before = false
-    all_tools = {}
-    menu_instance = {}
+    local menu_open = false
+    local menu_opened_before = false
+    local all_tools = {}
+    local menu_instance = {}
 
     generate_all_player_mods()
 
@@ -418,7 +418,7 @@ function draw_menu_button(mod, width, height)
             UiAlign("center middle")
             UiTranslate(UiWidth() / 2, UiHeight() / 2)
             if UiTextButton(mod.name) then
-                menu_open = false
+                -- menu_open = false
                 if (mod.enabled == false) then
                     set_mod_enabled(mod, true)
                 else
